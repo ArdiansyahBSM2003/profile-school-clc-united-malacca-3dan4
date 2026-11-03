@@ -1,0 +1,18 @@
+import { Link } from 'react-router-dom';
+import { usePageTitle } from '../../shared/hooks/usePageTitle';
+import schoolImage from '../../shared/assets/images/bg01.jpg';
+
+function Home() {
+  usePageTitle('Beranda');
+  return (
+    <>
+      <section className="hero" style={{ '--hero-background': `url("${schoolImage}")` }}><div className="container hero-copy"><span className="pill">Community Learning Centre · Ladang United Malacca</span><h1>Belajar dengan semangat Indonesia, tumbuh di tengah ladang Malaysia.</h1><p>Sekolah yang menemani anak-anak pekerja Indonesia di ladang untuk tetap meraih pendidikan yang layak, berkarakter, dan berprestasi.</p><div className="hero-actions"><Link className="button gold" to="/pendaftaran">Informasi Pendaftaran</Link><Link className="button outline" to="/tentang-kami">Kenali Sekolah Kami</Link></div><div className="hero-stats"><div><strong>Kelas 0 – SMP</strong><span>Jenjang pendidikan</span></div><div><strong>[JUMLAH]</strong><span>Siswa aktif</span></div><div><strong>[JUMLAH]</strong><span>Guru & tenaga pendidik</span></div><div><strong>[TAHUN]</strong><span>Tahun berdiri</span></div></div></div></section>
+      <section className="section cream-section"><div className="container split-grid"><div><span className="eyebrow">Tentang kami</span><h2>Sekolah di tengah hijaunya ladang</h2><p>CLC United Malacca hadir agar anak-anak di lingkungan ladang tetap mendapatkan pendidikan dari kelas 0 hingga SMP dengan kurikulum Indonesia, dekat dari rumah dan keluarga mereka.</p><p>[Tulis sejarah singkat, visi, dan misi sekolah di sini.]</p></div><div className="school-photo"><img src={schoolImage} alt="Kegiatan siswa CLC United Malacca di lingkungan sekolah" /></div></div></section>
+      <section className="section"><div className="container"><span className="eyebrow">Program</span><h2>Yang kami tawarkan</h2><div className="program-grid"><article className="program-card"><h3>Kurikulum Nasional</h3><p>Pembelajaran dari kelas 0 sampai SMP mengikuti kurikulum Indonesia agar siswa siap melanjutkan pendidikan.</p></article><article className="program-card"><h3>Bahasa & Budaya</h3><p>Penguatan Bahasa Indonesia, Bahasa Inggris, dan cinta tanah air.</p></article><article className="program-card"><h3>OSIS & Ekstrakurikuler</h3><p>Wadah kepemimpinan dan bakat siswa melalui OSIS dan kegiatan pilihan.</p><Link className="text-link" to="/osis">Lihat struktur OSIS →</Link></article></div></div></section>
+      <section className="section cream-section"><div className="container"><div className="dark-callout"><span className="eyebrow" style={{ color: '#efb44e' }}>Kehidupan di ladang</span><h2>Belajar dekat dengan keluarga, di lingkungan yang akrab</h2><p>[Ceritakan suasana ladang, perjalanan siswa ke sekolah, dan kegiatan bersama masyarakat ladang United Malacca.]</p></div><div className="section-heading" style={{ marginTop: 64 }}><h2>Galeri kegiatan</h2><Link className="text-link" to="/galeri">Lihat semua foto →</Link></div><div className="gallery-grid"><div className="gallery-tile"><span>[FOTO KEGIATAN 1]</span></div><div className="gallery-tile"><span>[FOTO KEGIATAN 2]</span></div><div className="gallery-tile"><span>[FOTO KEGIATAN 3]</span></div></div></div></section>
+      <section className="join-section section"><div className="container join-grid"><div><h2>Bergabung bersama kami</h2><p>[Tulis jadwal dan syarat pendaftaran siswa baru di sini.]</p></div><div className="join-details"><p><strong>Alamat:</strong> [ALAMAT SEKOLAH], Ladang United Malacca, Johor, Malaysia</p><p><strong>Telepon / WhatsApp:</strong> [NOMOR]</p><p><strong>Email:</strong> [EMAIL SEKOLAH]</p></div></div></section>
+    </>
+  );
+}
+
+export default Home;

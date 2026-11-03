@@ -1,0 +1,11 @@
+import AdminHeader from '../components/AdminHeader';
+import { usePageTitle } from '../../shared/hooks/usePageTitle';
+
+const applicants = Array.from({ length: 8 }, (_, index) => ({ index: index + 1, level: ['Kelas 0', 'SD', 'SMP'][index % 3], status: index === 2 || index === 3 || index === 6 ? 'Diverifikasi' : index === 5 ? 'Ditolak' : 'Baru' }));
+
+function AdminApplicants() {
+  usePageTitle('Data Pendaftar');
+  return <><AdminHeader title="Data Pendaftar" description="Daftar calon siswa baru dari halaman Daftar Siswa Baru." action={<button className="admin-secondary" type="button">Unduh data</button>} /><div className="admin-card filter-card"><label className="admin-field">Cari nama<input placeholder="Ketik nama siswa" /></label><label className="admin-field">Jenjang<select defaultValue=""><option value="">Semua jenjang</option><option>Kelas 0</option><option>SD</option><option>SMP</option></select></label><label className="admin-field">Status<select defaultValue=""><option value="">Semua status</option><option>Baru</option><option>Diverifikasi</option><option>Ditolak</option></select></label></div><div className="applicant-layout"><div className="admin-card admin-table applicant-table"><div className="table-row table-head"><span>No</span><span>Nama</span><span>Jenjang</span><span>Wali</span><span>WhatsApp</span><span>Status</span></div>{applicants.map((item) => <div className="table-row" key={item.index}><span>{item.index}</span><strong>[NAMA SISWA]</strong><span>{item.level}</span><span>[NAMA WALI]</span><span>[NOMOR]</span><span><em className={`status ${item.status === 'Ditolak' ? 'rejected' : item.status === 'Baru' ? 'new' : 'verified'}`}>{item.status}</em></span></div>)}</div><aside className="admin-card applicant-detail"><h2>Detail pendaftar</h2><p>Pilih baris untuk melihat data lengkap.</p><p><strong>Nama:</strong> [NAMA SISWA]</p><p><strong>Tanggal lahir:</strong> [TANGGAL]</p><p><strong>Jenjang:</strong> [JENJANG]</p><p><strong>Orang tua / wali:</strong> [NAMA WALI]</p><p><strong>WhatsApp:</strong> [NOMOR]</p><p><strong>Alamat:</strong> [DIVISI / ALAMAT]</p><button className="admin-primary" type="button">Verifikasi</button> <button className="admin-secondary" type="button">Tolak</button></aside></div></>;
+}
+
+export default AdminApplicants;

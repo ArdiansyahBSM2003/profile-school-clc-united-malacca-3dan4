@@ -1,0 +1,18 @@
+import { Link, useNavigate } from 'react-router-dom';
+import { usePageTitle } from '../../shared/hooks/usePageTitle';
+
+function Field({ label, children, optional = false }) {
+  return <label className="registration-field">{label} {optional && <small>(opsional)</small>}{children}</label>;
+}
+
+function RegistrationForm() {
+  usePageTitle('Formulir Pendaftaran');
+  const navigate = useNavigate();
+  function handleSubmit(event) {
+    event.preventDefault();
+    navigate('/pendaftaran/berhasil');
+  }
+  return <><section className="form-page-hero"><div className="container"><div className="breadcrumbs">Beranda › Daftar Siswa Baru › <span>Formulir</span></div><h1>Formulir Pendaftaran Siswa Baru</h1><p>Isi data dengan benar dan lengkap. Kolom bertanda <b>*</b> wajib diisi.</p></div></section><section className="content-section registration-form-content"><div className="container registration-form-container"><div className="form-progress"><span className="active">1 <b>Data siswa</b></span><span>2 <b>Data orang tua</b></span><span>3 <b>Dokumen</b></span><span>4 <b>Konfirmasi</b></span></div><form onSubmit={handleSubmit}><section className="registration-form-card"><h2><b>1</b>Data calon siswa</h2><p>Sesuai akta kelahiran.</p><div className="form-three"><Field label="Nama lengkap *"><input required placeholder="Nama sesuai akta" /></Field><Field label="Nama panggilan" optional><input placeholder="Nama panggilan" /></Field><Field label="Tempat lahir *"><input required /></Field><Field label="Tanggal lahir *"><input required type="date" /></Field><Field label="Jenis kelamin *"><select required defaultValue=""><option value="" disabled>Pilih</option><option>Laki-laki</option><option>Perempuan</option></select></Field><Field label="Jenjang yang dituju *"><select required defaultValue=""><option value="" disabled>Pilih jenjang</option><option>Kelas 0</option><option>SD</option><option>SMP</option></select></Field><Field label="Asal sekolah sebelumnya" optional><input placeholder="Kosongkan jika belum pernah" /></Field></div></section><section className="registration-form-card"><h2><b>2</b>Data orang tua / wali</h2><p>Kontak yang bisa dihubungi sekolah.</p><div className="form-three"><Field label="Nama ayah *"><input required /></Field><Field label="Nama ibu *"><input required /></Field><Field label="Nama wali" optional><input placeholder="Isi jika bukan orang tua" /></Field><Field label="Pekerjaan *"><input required /></Field><Field label="Nomor WhatsApp aktif *"><input required placeholder="[NOMOR]" type="tel" /></Field><Field label="Divisi / alamat tempat tinggal *"><input required /></Field></div></section><section className="registration-form-card"><h2><b>3</b>Unggah dokumen</h2><p>Format JPG, PNG, atau PDF. Maksimal [UKURAN] per berkas.</p><div className="form-three upload-fields"><Field label="Akta kelahiran *"><input required type="file" /></Field><Field label="Kartu keluarga *"><input required type="file" /></Field><Field label="Pas foto terbaru *"><input required type="file" /></Field><Field label="Rapor / surat keterangan sekolah" optional><input type="file" /></Field></div></section><label className="agreement"><input required type="checkbox" /> Saya menyatakan bahwa seluruh data yang saya isi benar, dan bersedia mengikuti ketentuan pendaftaran CLC United Malacca.</label><div className="form-actions"><Link className="button outline-dark" to="/pendaftaran">← Kembali</Link><button className="button" type="submit">Kirim Pendaftaran</button></div><p className="form-help">Butuh bantuan mengisi? Hubungi WhatsApp [NOMOR] atau buka halaman <Link to="/kontak">Kontak</Link>.</p></form></div></section></>;
+}
+
+export default RegistrationForm;
